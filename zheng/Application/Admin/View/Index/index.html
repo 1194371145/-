@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>郑州成功财经学院图书馆推荐系统</title>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__HPUBLIC__/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+    <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="__MODULE__/index/index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">图书管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+                <form action="" method="post">
+                    <table class="search-tab">
+                        <tr>
+                            
+                            
+                            <th width="70">查询:</th>
+                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
+                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" action="__CONTROLLER__/sort" method="post">
+            
+                <div class="result-title">
+                    <div class="result-list">
+                       
+                        <a href="__CONTROLLER__/excel"><i class="icon-font"></i>导出Excel</a>(*学生推荐管理员没有权限添加书本)
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            
+                            <th>书名</th>
+                            <th>书号</th>
+                            <th>作者</th>
+                            <th>出版社</th>
+                            <th>荐书人</th>
+                            <th>联系方式</th>
+                            <th>添加时间</th>
+                            
+                        </tr>
+                        <volist name="list" id="vo">
+                          <tr>
+                            <td>{$vo.name}</td>
+                            <td title="{$vo.shuhao}"><a target="_blank" href="#" title="{$vo.shuhao}">{$vo.shuhao}</a>
+                            </td>
+                            <td title="{$vo.zuoze}">{$vo.zuoze} 
+                            </td>
+                            <td title="{$vo.chubanshe}">{$vo.chubanshe} … 
+                            </td>
+                             <td title="{$vo.tuijianren}">{$vo.tuijianren} 
+                            </td>
+                             <td title="{$vo.tel}">{$vo.tel}
+                            </td>
+                             <td title="{$vo.addtime}">{$vo.addtime||date='Y-m-d H:i:s',###}
+                            </td>
+                            
+                            <td>
+                                <a class="link-update" href="__CONTROLLER__/edit/id/{$vo.id}"><i class="icon-font"></i>修改</a>|
+                                <a class="link-del"  onclick="return confirm('确定删除么')" href="__CONTROLLER__/del/id/{$vo.id}"><i class="icon-font"></i>删除</a>
+                            </td>
+                        </tr>
+</volist>
+                        
+                        
+                    </table>
+                    <div class="list-page"> {$count} 条 1/1 页{$page}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+    <include file="Public/but" />
+</div>
+</body>
+</html>

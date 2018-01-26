@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>郑州成功财经学院图书馆推荐系统</title>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__HPUBLIC__/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+    <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="__MODULE__/index/index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">图书管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+                
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" enctype="multipart/form-data" action="__CONTROLLER__/download" method="post">
+            欢迎你导出excel<input type="submit" value="导出excel">
+            </form><br><hr>
+            <!-- <form name="myform" id="myform" action="__CONTROLLER__/excel" method="post">
+            <input type="file" name="photo"><input type="submit" value="导入数据">
+            </form> -->
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

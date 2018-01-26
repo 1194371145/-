@@ -1,0 +1,23 @@
+[ 2017-12-03T15:16:16+08:00 ] ::1 /zheng/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000912s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001334s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001398s ]
+SQL: SHOW COLUMNS FROM `zheng_book` [ RunTime:0.0118s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zheng_book` WHERE ( type=1 ) LIMIT 1   [ RunTime:0.0528s ]
+SQL: SELECT * FROM `zheng_book` WHERE ( type=1 ) ORDER BY addtime desc LIMIT 0,3   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000155s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000244s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042147s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042281s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001873s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001947s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.009852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.009952s ]
+

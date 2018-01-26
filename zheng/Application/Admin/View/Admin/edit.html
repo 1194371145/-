@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>郑州成功财经学院图书馆推荐系统</title>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__HPUBLIC__/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+   <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="http://localhost/blog/index.php/Admin/">首页</a><span class="crumb-step">&gt;</span><span>管理链接</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform">
+                <input type="hidden" id="id" name="id"  value="{$cater.id}" >
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><i class="require-red"></i>用户：</th>
+                                <td>
+                                    <input class="common-text required" id="username" name="username" size="50" placeholder="请输入用户名" value="{$cater.username}" type="text">*
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red"></i>密码：</th>
+                                <td>
+                                    <input class="common-text required" id="password" name="password" placeholder="请输入密码" size="50" value="" type="text">
+                                </td>
+                            </tr>                         
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>郑州成功财经学院图书馆推荐系统</title>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__HPUBLIC__/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+    <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">图书管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+               
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" action="__CONTROLLER__/sort" method="post">
+            
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="__CONTROLLER__/add"><i class="icon-font"></i>新增管理员</a>(*如果有必要退出账号)
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            
+                            <th>管理员ID</th>
+                            <th>管理员</th>
+                            <th>操作</th>
+                            
+                        </tr>
+                        <volist name="list" id="vo">
+                          <tr>
+                            <td>{$vo.id}</td>
+                            <td title="{$vo.username}"><a target="_blank" href="#" title="{$vo.username}">{$vo.username}</a>
+                            </td>
+                            
+                             <td align="center">
+                                        <a href="__CONTROLLER__/edit/id/{$vo.id}" class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a onclick="return confirm('确定删除么')" href="__CONTROLLER__/del/id/{$vo.id}" class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    </td>
+                        </tr>
+</volist>
+                        
+                        
+                    </table>
+                    
+                </div>
+            </form>
+        </div>
+         <div class="list-page"> {$page}</div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

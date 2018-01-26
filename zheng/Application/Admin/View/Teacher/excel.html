@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>郑州成功财经学院图书馆推荐系统</title>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__HPUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__HPUBLIC__/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+    <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="__MODULE__/index/index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">图书管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+                <form action="/jscss/admin/design/index" method="post">
+                    <table class="search-tab">
+                        <tr>
+                            <th width="120">选择分类:</th>
+                            <td>
+                                <select name="search-sort" id="">
+                                    <option value="">全部</option>
+                                    <option value="19">精品界面</option><option value="20">推荐界面</option>
+                                </select>
+                            </td>
+                            <th width="70">关键字:</th>
+                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
+                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" enctype="multipart/form-data" action="__CONTROLLER__/download" method="post">
+            欢迎你导出excel<input type="submit" value="导出excel">
+            </form><br><hr>
+            <!-- <form name="myform" id="myform" action="__CONTROLLER__/excel" method="post">
+            <input type="file" name="photo"><input type="submit" value="导入数据">
+            </form> -->
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
