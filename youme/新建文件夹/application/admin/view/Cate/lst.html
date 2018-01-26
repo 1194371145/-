@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+{include file="Public/top" /}
+<div class="container clearfix">
+{include file="Public/left" /}
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">栏目管理</span></div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('add')}"><i class="icon-font"></i>新增作品</a>
+                        <a href="javascript:;" class="del"><i class="fa fa-edit"></i>批量删除</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                        
+                            <th width="3%">ID</th>
+                            <th width="10%" >栏目名称</th>
+                            <th width="6%">栏目类型</th>
+                            <th width="8%">操作</th>
+                        </tr>
+                        {volist name="cateres" id="vo"}
+                        <tr>  
+                            <td>{$vo.id}</td>
+                            <td title="{$vo.catename}"><a target="_blank" href="#" title="{$vo.catename}">{$vo.catename}</a> …
+                            </td>
+                            <td>
+                            {if condition="$vo['type'] eq 0"} 列表栏目
+                        {else /} 留言板
+                            {/if}
+                            </td>
+                           
+                            <td><input type="checkbox" name="{$vo.id}" value="{$vo.id}"/>
+                                <a class="link-update" href="{:url('edit',array('id'=>$vo.id))}">修改</a>
+                                <a class="link-del" onclick="return confirm('你确定要删除么');" href="{:url('del',array('id'=>$vo.id))}">删除</a>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                   
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/static/admin/jquery/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/admin/jquery/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/admin/jquery/WdatePicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/admin/jquery/jquery.pagination.js"></script>
+<script type="text/javascript">
+//jQuery代码
+$(function(){
+    //给删除按钮绑定点击事件
+    $('.del').on('click',function(){
+        //事件处理程序
+        var idObj = $(':checkbox:checked'); //获取全部已经被选中的checkbox
+        var id = '';    //接收处理后的部门id值，组成id1,id2,id3...
+        //循环遍历idObj对象，获取其中的每一个值
+        for (var i = 0; i < idObj.length; i++) {
+            id += idObj[i].value + ',';
+        }
+        //去掉最后逗号
+        id = id.substring(0,id.length - 1);
+        //判断id
+        if(id == ''){
+            return false;
+        }
+        //带着参数跳转到del方法
+        window.location.href = '/youme/public/admin/cate/del/id/' + id;
+    });
+});
+</script>
+</html>
