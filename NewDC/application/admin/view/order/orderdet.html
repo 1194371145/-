@@ -1,0 +1,96 @@
+{include file='head' /}
+<div class="content-wrapper">
+  <section class="content-header">
+     
+    </section>
+
+    
+
+    <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> 订单列表
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>菜品图片</th>
+              <th>菜品名称</th>
+              <th>菜品单价</th>
+              <th>菜品数量</th>
+              <th>小计</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              {php}
+                $status = [0 => '未完成', 1 => '已完成'];
+              {/php}
+              {volist name='list' id='v'}
+                {php}
+                  $file = substr($v['dish_img'], 0, 8);
+                  $img = 'thumb'.substr($v['dish_img'], 9, 36);
+                {/php}
+                <tr>
+                  <td>
+                    <img style="width: 120px; height: 80px;" src="/uploads/dish/{$file}/{$img}">
+                  </td>
+                  <td>{$v['dish_name']}</td>
+                  <td>{$v['dish_price']}</td>
+                  <td>{$v['det_dish_num']}</td>
+                  <td>{$v['dish_price'] * $v['det_dish_num']}</td>
+                  <td id="{$v['det_id']}">{$status[$v['det_status']]}</td>
+                  <td>
+                    {if condition="$v['det_status'] eq 1"}
+                    <button disabled="" class="btn btn-primary btn-xs">完成</button>
+                    {else /}
+                    <button id="btn{$v['det_id']}" onclick="complete({$v['det_id']});" class="btn btn-primary btn-xs">完成</button>
+                    {/if}
+                  </td>
+                </tr>
+              {/volist}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <!-- <a href="{:url('/admin/index/downLoad')}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> 下载</a> -->
+         <!--  <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button> -->
+          <div class="pull-right"></div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript">
+  function complete(id) {
+    if(confirm('是否确认完成?')) {
+      $.ajax({
+        url:"{:url('/admin/order/dishComplete')}",
+        type:"POST",
+        data:{id:id},
+        success:function(data){
+          if(data.code==1){
+            $("#"+id).html('已完成');
+            $("#btn"+id).attr('onclick', '');
+            $("#btn"+id).attr('disabled', '');
+          }else{
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+</script>

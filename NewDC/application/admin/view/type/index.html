@@ -1,0 +1,74 @@
+{include file='head' /}
+<div class="content-wrapper">
+  <section class="content-header">
+     
+    </section>
+
+    
+
+    <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> 分类列表
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>分类名称</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              {volist name='list' id='v'}
+                <tr id="{$v['type_id']}">
+                  <td >{$v['type_id']}</td>
+                  <td>{$v['type_name']}</td>
+                  <td>
+                    <button onclick="del({$v['type_id']});" class="btn btn-xs btn-danger">删除</button>
+                    <a href="{:url('/admin/type/add', ['id' => $v['type_id']])}" class="btn btn-xs btn-primary">修改</a>
+                  </td>
+                </tr>
+              {/volist}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <!-- <a href="{:url('/admin/index/downLoad')}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> 下载</a> -->
+         <!--  <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button> -->
+          <div class="pull-right"></div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript">
+  function del(id) {
+    if(confirm('是否确认删除?')) {
+      $.ajax({
+        url:"{:url('/admin/type/dodel')}",
+        type:"POST",
+        data:{id:id},
+        success:function(data){
+          if(data.code==1){
+            $("#"+id).remove();
+          }else{
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+</script>

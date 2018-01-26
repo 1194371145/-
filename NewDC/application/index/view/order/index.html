@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title></title>
+
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__pro/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__pro/css/module.css"  />
+
+</head>
+<body>
+
+<!--头部开始-->
+<div class="header">
+	<h1>已点订单</h1>
+	<a href="javascript:history.back();" class="back"><span></span></a>
+	<a href="#" class=""></a>
+</div>
+<!--头部结束-->
+<div class="shopping">
+	
+	<div class="shop-group-item">
+		<!-- <div class="shop-name">
+			<input type="checkbox" class="check goods-check shopCheck">
+			<h4><a href="#">苹果专卖店</a></h4>
+			<div class="coupons"><span>领券</span><em>|</em><span>编辑</span></div>
+		</div> -->
+		<ul>
+			{volist name='list' id='v'}
+			{php}
+               $file = substr($v['dish_img'], 0, 8);
+               $img = 'thumb'.substr($v['dish_img'], 9, 36);
+             {/php}
+			<li>
+				<div class="shop-info">
+					<!-- <input type="checkbox" class="check goods-check goodsCheck"> -->
+					<div class="shop-info-img"><a href="#"><img src="/uploads/dish/{$file}/{$img}" /></a></div>
+					<div class="shop-info-text">
+						<h4>{$v['dish_name']}</h4>
+						<div class="shop-brief"><span></span><span></span><span></span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">{$v['dish_price']}</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:sub({$v['dish_id']});" class="minus">-</a>
+								<span class="num" >{$v['dish_num']}</span>
+								<a href="javascript:add({$v['dish_id']});" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{/volist}
+		</ul>
+		<div style="display: none;" class="shopPrice">本店总计：￥<span class="shop-total-amount ShopTotal">0.00</span></div>
+	</div>
+	
+</div>
+
+<div class="payment-bar">
+	<!-- <div class="all-checkbox"><input type="checkbox" class="check goods-check" id="AllCheck">全选</div> -->
+	<div class="shop-total">
+		<strong>总价：<i class="total" id="AllTotal">{:getOrderTotalPrice($order_num);}</i></strong>
+		<!-- <span>减免：123.00</span> -->
+	</div>
+	<a href="{:url('/index/pay/index')}?order_num={$order_num}" class="settlement">去结账</a>
+	<a href="{:url('/')}" class="settlement">去加菜</a>
+</div>
+<script type="text/javascript" src="__PUBLIC__pro/js/jquery-1.7.1.min.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__pro/js/shopping.js"></script> -->
+
+<script type="text/javascript">
+function add(id) {
+	$.ajax({
+		url: "{:url('/index/order/addDish')}",
+		type: "POST",
+		data: {id:id},
+		success:function(data) {
+			if(data.code == 1) {
+				location.reload();
+			} else {
+				alert(data.msg);	
+			}
+			
+		}
+	});
+	// alert(id);
+}
+
+function sub(id) {
+	alert('请联系店员进行退菜');
+}
+</script>
+</body>
+</html>
+

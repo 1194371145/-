@@ -1,0 +1,106 @@
+{include file='head' /}
+<div class="content-wrapper">
+  <section class="content-header">
+     
+    </section>
+
+    
+
+    <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> 人员列表
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>用户名</th>
+              <th>状态</th>
+              <th>权限</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              {php}
+                $status = ['0' => '禁用', 1 => '正常'];
+              {/php}
+              {volist name='list' id='v'}
+                <tr id="{$v['user_id']}">
+                  <td>{$v['user_id']}</td>
+                  <td>{$v['user_name']}</td>
+                  <td id="status{$v['user_id']}">{$status[$v['user_status']]}</td>
+                  <td>{$v['user_auth']}</td>
+                  <td>
+                    {if condition="$v['user_id'] eq 1"}
+                    <font style="color: red;">无权操作！</font>
+                    {else /}
+                      {if condition="$v['user_id'] eq session('u_id')"}
+                      <font style="color: red;">无法操作自己！</font>
+                      {else /}
+                      <button class="btn btn-danger btn-xs" onclick="del({$v['user_id']})">删除</button>
+                      <button class="btn btn-warning btn-xs" onclick="change({$v['user_id']})">切换状态</button>
+                      {/if}
+                    {/if}
+                  </td>
+                </tr>
+              {/volist}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <!-- <a href="{:url('/admin/index/downLoad')}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> 下载</a> -->
+         <!--  <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button> -->
+          <div class="pull-right"></div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript">
+  function del(id) {
+    if(confirm('是否确认删除?')) {
+      $.ajax({
+        url:"{:url('/admin/Person/dodel')}",
+        type:"POST",
+        data:{id:id},
+        success:function(data){
+          if(data.code==1){
+            $("#"+id).remove();
+          }else{
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+
+  function change(id) {
+    $.ajax({
+      url:"{:url('/admin/Person/doChange')}",
+      type:"POST",
+      data:{id:id},
+      success:function(data){
+        if(data.code==1){
+          if(data.url == 1) {
+            $("#status"+id).html('正常');
+          } else {
+            $("#status"+id).html('禁用');
+          }
+        }
+      }
+    });
+  }
+</script>

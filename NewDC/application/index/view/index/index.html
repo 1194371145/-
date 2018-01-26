@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__pro/css/gun.css" />
+		<style>@font-face {
+	font-family: "iconfont";
+	src: url('__PUBLIC__pro/css/iconfont.eot');
+	/* IE9*/
+	src: url('__PUBLIC__pro/css/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('__PUBLIC__pro/css/iconfont.woff') format('woff'), /* chrome, firefox */
+	url('__PUBLIC__pro/css/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+	url('__PUBLIC__pro/css/iconfont.svg#iconfont') format('svg');
+	/* iOS 4.1- */
+			/*用户评价样式*/
+
+}
+
+.iconfont {
+	font-family: "iconfont" !important;
+	font-size: 30px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}</style>
+		<script type="text/javascript" src="__PUBLIC__/pro/js/sp.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<form action="{:url('/index/search/search')}" method="POST">
+				<input type="text" name="key" />
+			</form>
+		</header>
+		<div class="top">
+			<div ><img class="t_left" src="uploads/logo/{$seller_data['seller_shop_logo']}"></div>
+			<div class="t_right">
+				<p>
+					<span style="font-size: 22px;color: red;">店铺</span>
+					<span style="font-size: 28px;">{$seller_data['seller_shop_name']}</span>
+				</p>
+				<table style="width:100%;">
+					<tr>
+						<td style="width:10%;">服务：</td>
+						<td style="width:38%;">
+							<ul id="box">
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+							</ul>
+						</td>
+						<hr style="margin-top:2%;margin-bottom:2%;"/>
+						<td rowspan="2" style="border-left:1px solid grey; padding-left:6%;">
+							<h2>商品评分:9.0</h2>
+						</td>
+					</tr>
+					<tr>
+						<td>口味：</td>
+						<td>
+							<ul id="box1">
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+								<li class="image"></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="tou">
+			<div class="tou1" style="color: orange;">菜品</div>
+			<div class="tou1">评价</div>
+			<div class="tou1">详情</div>
+			<div id="slider"></div>
+		</div>
+		<div class="lun lun1" style="display: block;">
+			<div class="nav-lf">
+				<ul id="nav">
+					{volist name='list' id='v'}
+					<li>
+						<a href="#st{$v['type_id']}">{$v['type_name']}</a><b></b>
+					</li>
+					{/volist}
+					
+				</ul>
+			</div>
+
+			<div id="container" class="container">
+
+				{volist name='list' id='v'}
+				<div class="section" id="st{$v['type_id']}">
+					<div class="big_t">{$v['type_name']}</div>
+					{volist name=":getDish($v['type_id'])" id='vo'}
+						<div class="prt-lt">
+							{php}
+								$file = substr($vo['dish_img'], 0, 8);
+								$img = 'thumb'.substr($vo['dish_img'], 9, 36);
+							{/php}
+							<div class="lt-lt"><img onclick="qq({$vo['dish_id']});" src="http://iph.href.lu/200x200?text=%E5%B7%B2%E6%9C%89%E8%8F%9C%E5%93%81" c="/uploads/dish/{$file}/{$img}"></div>
+							<div class="lt-ct">
+								<p>{$vo['dish_name']}</p>
+								<p class="pr">¥<span class="price">{$vo['dish_price']}</span></p>
+							</div>
+							<div class="lt-rt">
+								<input type="button" data-id="{$vo['dish_id']}" class="minus" value="-">
+								<input type="text" class="result" value="0">
+								<input type="button" data-id="{$vo['dish_id']}" class="add xx" value="+">
+							</div>
+						</div>
+					{/volist}
+				</div>
+				{/volist}
+			 <!-- 	<div class="section" id="st1">
+					<div class="big_t">单人特色套餐</div>
+					<div class="prt-lt">
+
+						<div class="lt-lt"><img src="" c="__PUBLIC__/pro/img/cai.jpg"></div>
+						<div class="lt-ct">
+							<p>商品1</p>
+							<p class="pr">¥<span class="price">60.00</span></p>
+						</div>
+						<div class="lt-rt">
+							<input type="button" class="minus" value="-">
+							<input type="text" class="result" value="0">
+							<input type="button" class="add xx" value="+">
+						</div>
+					</div>
+
+					<div class="prt-lt">
+
+						<div class="lt-lt"><img src="" c="__PUBLIC__/pro/img/cai.jpg"></div>
+						<div class="lt-ct">
+							<p>商品1</p>
+							<p class="pr">¥<span class="price">60.00</span></p>
+						</div>
+						<div class="lt-rt">
+							<input type="button" class="minus" value="-">
+							<input type="text" class="result" value="0">
+							<input type="button" class="add xx" value="+">
+						</div>
+					</div>
+
+				</div> --> 
+
+				
+
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="lun lun2">
+
+			<div class="pf_t">
+				<!-- <div class="kuang">
+					<div class="plz">eryreywrey</div>
+					<div class="plz">热tyre问题</div>
+					<div class="plz">让台湾</div>
+					<div class="plz">如同有人疼</div>
+					<div class="plz">语言</div>
+					<div class="plz">呀有</div>
+				</div> -->
+				{volist name='comment_data' id='v'}
+				<div class="yonp">
+					<div class="lv">
+						<div class="lvtu"></div>
+						<div class="ni"><span>匿名用户</span><span>{$v['comment_add_time']}</span></div>
+					</div>
+					<span>{$v['comment_content']}</span>
+				</div>
+				{/volist}
+				
+			</div>
+		</div>
+		<div class="lun lun3">
+			<div class="lun3_t">
+				<div class="tai"><i class="iconfont">&#xe60e;</i><span style="margin-left: 15px;">{$seller_data['seller_shop_addr']}</span></div>
+				<div class="tai"><i class="iconfont">&#xe684;</i><span style="margin-left: 15px;">{$seller_data['seller_tel']}</span></div>
+			</div>
+			<div class="lun3_t">
+				<!-- <div class="tai"><i class="iconfont">&#xe716;</i><span style="margin-left: 15px;">额外特务天文台温热我</span></div> -->
+				<div class="tai"><i class="iconfont">&#xe627;</i><span style="margin-left: 15px;">营业时间：{$set_data['set_start_time']}~{$set_data['set_end_time']}</span></div>
+			</div>
+		</div>
+		<footer>
+			<div class="f_left">
+				<div class="che" id="total"></div>
+				<span class="zon share">0</span>
+				<div class="zi" style="margin-left:50px;"><span class="gon">0</span>元</div>
+					<a href="{:url('/index/order/index')}">我的订单</a>
+			</div>
+			<div class="f_right">
+				<a href="{:url('/index/Car/index')}">购物车</a>
+			</div>
+			
+			
+		
+		</footer>
+		<section>
+			 
+		</section>
+
+	</body>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/jquery.fly.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/tween.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/dc.js"></script>
+	<script type="text/javascript">function qq(id) {
+	$.ajax({
+		type: "POST",
+		url: "{:url('/index/index/getDishById')}",
+		data: {
+			id: id
+		},
+		success: function(data) {
+			$("section").empty();
+			var file = data.dish_img.substring(0, 8);
+			var img = 'thumb' + data.dish_img.substring(9, 45);
+			$("section").append("<div class='s_top' style='background: url(/uploads/dish/" + file + "/" + img + "); background-size:750px 518px;'><div onclick='cha();' class='cha'><i class='iconfont' style='font-size:60px;color:white'>&#xe639;</i></div></div><div class='s_center'><p style='font-size: 28px;'>" + data.dish_name + "</p><p>月售" + data.dish_sales + "</p><p class='rj'><span class='price' style='color: red;'>￥" + data.dish_price + "</span><span onclick='addToCar(" + data.dish_id + ");' class='jr xx'>加入购物车</span></p></div><div class='pingjia'><div class='pj_t'><span style='margin-left: 15px;'>外卖评价（好评度）95%</span><span style='margin-left: 300px;'>18条评论<i class='iconfont'>&#xe503;</i></span></div><div class='yonp'><div class='lv'><div class='lvtu'></div><div class='ni'><span>匿名用户</span><span style='margin-left:400px;'>2017-11-3</span></div></div><span>不错的好吃呀啊啊啊啊啊啊啊啊啊</span></div></div>");
+			$("section").show();
+		}
+	});
+}
+
+function cha() {
+	// alert(123);
+	$("section").hide();
+}
+
+function addToCar(dish_id) {
+	$.ajax({
+		url: "{:url('/index/index/checkDishStatus')}",
+		type: "POST",
+		data: {id:dish_id},
+		success: function(data) {
+			// alert(data);
+			if(!data) {
+				alert('当前菜品已下架！');
+			} else {
+					
+				if(sessionStorage.getItem("mycars")) {
+					mycars = sessionStorage.getItem("mycars").split(',');
+					mycars.push(dish_id);
+				} else {
+					mycars = [dish_id];
+					mycars.push();
+				}
+				console.log(mycars);
+				sessionStorage.setItem("mycars",mycars);
+				// setTotal();
+				alert('加入成功!');
+			}
+		}
+	});
+	
+}
+
+$(function() {
+	// mycars = [];
+	$(".xx").click(function() {
+		var dish_id = $(this).attr('data-id');
+		var t = $(this).parent().find('input[class*=result]');
+		$.ajax({
+			url: "{:url('/index/index/checkDishStatus')}",
+			type: "POST",
+			data: {id:dish_id},
+			success: function(data) {
+				// alert(data);
+				if(!data) {
+					alert('当前菜品已下架！');
+				} else {
+					
+					t.val(parseInt(t.val()) + 1);
+					
+					if(sessionStorage.getItem("mycars")) {
+						mycars = sessionStorage.getItem("mycars").split(',');
+						mycars.push(dish_id);
+					} else {
+						mycars = [dish_id];
+						mycars.push();
+					}
+					console.log(mycars);
+					sessionStorage.setItem("mycars",mycars);
+					setTotal();
+				}
+			}
+		});
+	})
+
+	$(".minus").click(function() {
+		var t = $(this).parent().find('input[class*=result]');
+		var dish_id = $(this).attr('data-id');
+		t.val(parseInt(t.val()) - 1);
+		if(parseInt(t.val()) < 0) {
+			t.val(0);
+		}
+		if(sessionStorage.getItem("mycars")) {
+	    var mycars = sessionStorage.getItem("mycars").split(',');
+	      if($.inArray(dish_id,mycars) != '-1') {
+	        mycars.splice($.inArray(dish_id,mycars),1);
+	      }
+	    }
+	    console.log(mycars);
+	    sessionStorage.setItem("mycars", mycars); 
+		setTotal();
+
+	})
+
+	function setTotal() {
+		var s = 0;
+		var v = 0;
+		var n = 0;
+		//				<!--计算总额--> 
+		$(".lt-rt").each(function() {
+			s += parseInt($(this).find('input[class*=result]').val()) * parseFloat($(this).siblings().find('span[class*=price]').text());
+
+		});
+
+		//				<!--计算菜种-->
+		var nIn = $("li.current a").attr("href");
+		$(nIn + " input[type='text']").each(function() {
+			if($(this).val() != 0) {
+				n++;
+			}
+		});
+
+		//				<!--计算总份数-->
+		//		$(" input[type='text']").each(function() {
+		//			v += parseInt($(this).val());
+		//			console.log(v)
+		//		});
+		$(".result").each(function() {
+			v += parseInt($(this).val());
+
+		});
+		if(n > 0) {
+			$(".current b").html(n).show();
+		} else {
+			$(".current b").hide();
+		}
+
+		$(".share").html(v);
+		if(v > 0) {
+      $(".share").css("display","block")
+			$(".che").css({
+				"background": "url(__PUBLIC__/pro/img/h1.png)",
+				"background-size": "100px 100px"
+			})
+
+		} else {
+			$(".che").css({
+				"background": "url(__PUBLIC__/pro/img/shoppingcar.png)",
+				"background-size": "100px 100px"
+			})
+			$(".share").css("display","none")
+		}
+		$(".gon").html(s.toFixed(2));
+	}
+	setTotal();
+
+})</script>
+</html>

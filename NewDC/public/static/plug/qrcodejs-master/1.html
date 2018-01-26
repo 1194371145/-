@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="qrcode.js"></script>
+</head>
+<body>
+	<input type="text" name="" id="text">
+	<button onclick="makeCode();">生成二维码</button>
+	<div id="qrcode"></div>
+</body>
+	<script type="text/javascript">
+		
+		function makeCode () {		
+			
+			var qrcode = new QRCode(document.getElementById("qrcode"), {
+				width : 200,
+				height : 200,
+			});
+			qrcode.makeCode($('#text').val());
+		}
+
+
+	</script>
+</html>

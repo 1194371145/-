@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__pro/css/gun.css" />
+		<style>
+			@font-face {
+				font-family: "iconfont";
+				src: url('__PUBLIC__pro/css/iconfont.eot');
+				/* IE9*/
+				src: url('__PUBLIC__pro/css/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('__PUBLIC__pro/css/iconfont.woff') format('woff'), /* chrome, firefox */
+				url('__PUBLIC__pro/css/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+				url('__PUBLIC__pro/css/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 30px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			/*修改后的搜索样式*/
+			#container{
+				width:100%;
+				background-color: white;
+			}
+			.biaoti{
+				width:100%;
+				background-color:#f4f5f7;
+				height:52px;
+				font-size:26px;
+				padding-left:25px;
+				vertical-align: middle;
+			}
+			.con{
+				width:100%;
+				height:150px;
+			}
+			.imglf{
+				float: left;
+				width:30%;
+				margin-left:3%;
+				margin-top:1%;
+			}
+			.ltziduan{
+				float:left;
+				width:30%;
+				padding-left:10%;
+				height:116px;
+				margin-top:6%;
+			}
+			.btndw{
+				float:left;
+				width:27%;
+				height:80px;
+				margin-top:10%;
+			}
+			.adds,.jian{
+				width:70px;
+				height:70px;
+				border-radius:50%;
+				font-size:35px;
+			}
+			.adds{
+				background-color:orangered;
+			}
+			.jian{
+				background-color:grey;
+			}
+			.txt{
+				width:24px;
+				height:50px;
+				font-size:36px;
+				border:none;
+				margin:0 12px;
+			}
+		</style>
+		<script type="text/javascript" src="__PUBLIC__/pro/js/sp.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<form action="">
+				<a href="javascript:history.back();" style="font-size: 80px;margin-left:0%;margin-top:-2%;color:white;"><</a>
+				<input type="text" />
+			</form>
+		</header>
+		<div class="top">
+			<div class="t_left"><img class="t_left" src="/uploads/logo/{$seller_data['seller_shop_logo']}"></div>
+			<div class="t_right">
+				<p><span style="font-size: 22px;color: red;">店铺</span><span style="font-size: 28px;">{$seller_data['seller_shop_name']}</span></p>
+			</div>
+		</div>
+		<!-- <div class="tou">
+			<div class="tou1" style="color: orange;">商品</div>
+			<div class="tou1">评价</div>
+			<div class="tou1">商家</div>
+			<div id="slider"></div>
+		</div> -->
+		<div class="lun lun1" style="display: block;">
+			<!-- <div class="nav-lf">
+				<ul id="nav">
+					<li class="current">
+						<a href="#st1">分类一</a><b></b></li>
+					<li>
+						<a href="#st2">分类二</a><b></b></li>
+					<li>
+						<a href="#st3">分类三</a><b></b></li>
+					<li>
+						<a href="#st4">分类四</a><b></b></li>
+					<li>
+						<a href="#st5">分类五</a><b></b></li>
+					<li>
+						<a href="#st6">分类六</a><b></b></li>
+					<li>
+						<a href="#st7">分类七</a><b></b></li>
+					<li>
+						<a href="#st8">分类八</a><b></b></li>
+				</ul>
+			</div> -->
+
+			<div id="container">
+
+				<div class="section" id="st1">
+					<!-- <div class="biaoti">单人特色套餐</div> -->
+					{volist name='list' id='v'}
+					{php}
+						$file = substr($v['dish_img'], 0, 8);
+						$img = 'thumb'.substr($v['dish_img'], 9, 36);
+					{/php}
+					<div class="con">
+
+						<div class="imglf"><img style="width:250px;height:139px;" onclick="qq({$v['dish_id']});" src="http://iph.href.lu/200x200?text=%E5%B7%B2%E6%9C%89%E8%8F%9C%E5%93%81" c="/uploads/dish/{$file}/{$img}"></div>
+						<div class="ltziduan">
+							<h1>{$v['dish_name']}</h1>
+							<h2 class="pr">¥<span class="price">{$v['dish_price']}</span></h2>
+						</div>
+						<div class="btndw">
+							<input type="button" data-id="{$v['dish_id']}" class="jian" value="-">
+							<input type="text" class="txt" value="0">
+							<input type="button" data-id="{$v['dish_id']}" class="adds" value="+">
+						</div>
+					</div>
+					{/volist}
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="lun lun2">
+			<div class="pf">
+				<div class="pf_zo">
+					<p style="font-size: 40px;color: orange;font-weight: bold;">4.0</p>
+					<p style="font-size:25px;">商家评分</p>
+				</div>
+				<div class="pf_zh">
+					<span>口味</span>
+					<span></span>
+					<span>包装</span>
+				</div>
+				<div class="pf_y">
+					<p style="font-size: 40px;font-weight: bold;">4.2</p>
+					<p style="font-size:25px;">配送评分</p>
+				</div>
+			</div>
+			<div class="pf_t">
+				<div class="kuang">
+					<div class="plz">eryreywrey</div>
+					<div class="plz">热tyre问题</div>
+					<div class="plz">让台湾</div>
+					<div class="plz">如同有人疼</div>
+					<div class="plz">语言</div>
+					<div class="plz">呀有</div>
+				</div>
+				<div class="yonp">
+					<div class="lv">
+						<div class="lvtu"></div>
+						<div class="ni"><span>匿名用户</span><span style="margin-left:400px;">2017-11-3</span></div>
+					</div>
+					<span>不错的好吃呀啊啊啊啊啊啊啊啊啊</span>
+				</div>
+				<div class="yonp">
+					<div class="lv">
+						<div class="lvtu"></div>
+						<div class="ni"><span>匿名用户</span><span style="margin-left:400px;">2017-11-3</span></div>
+					</div>
+					<span>不错的好吃呀啊啊啊啊啊啊啊啊啊</span>
+				</div>
+			</div>
+		</div>
+		<div class="lun lun3">
+			<div class="lun3_t">
+				<div class="tai"><i class="iconfont">&#xe60e;</i><span style="margin-left: 15px;">太仓市成行政上海东路十三点撒司法所</span><i class="iconfont" style="margin-left:160px;">&#xe684;</i></div>
+				<div class="tai"><i class="iconfont">&#xe979;</i><span style="margin-left: 15px;">查看食品安全档案</span><i class="iconfont" style="margin-left:400px;">&#xe503;</i></div>
+			</div>
+			<div class="lun3_t">
+				<div class="tai"><i class="iconfont">&#xe716;</i><span style="margin-left: 15px;">额外特务天文台温热我</span></div>
+				<div class="tai"><i class="iconfont">&#xe627;</i><span style="margin-left: 15px;">上班时间：9：00~17:00</span></div>
+			</div>
+		</div>
+		<div style="height:100px;width:100%;"></div>
+		<footer id="foot">
+			<div class="f_left">
+				<div class="che" id="total">
+					<span class="zon share">0</span>
+				</div>
+				<div class="zi" style="margin-left:50px;"><span class="gon">0</span>元</div>
+			</div>
+			<div class="f_right">
+				<a href="{:url('/index/Car/index')}">购物车</a>
+			</div>
+		</footer>
+		<section>
+			<div class="s_top">
+				<div class="cha"><i class="iconfont" style="font-size:40px;">&#xe639;</i></div>
+			</div>
+			<div class="s_center">
+				<p style="font-size: 28px;">好味肉夹馍</p>
+				<p>月售 723</p>
+				<p class="rj"><span style="color: red;">￥7</span><span class="jr">加入购物车</span></p>
+			</div>
+			<div class="pingjia">
+				<div class="pj_t">
+					<span style="margin-left: 15px;">外卖评价（好评度）95%</span>
+					<span style="margin-left: 300px;">18条评论<i class="iconfont">&#xe503;</i></span>
+				</div>
+				<div class="yonp">
+					<div class="lv">
+						<div class="lvtu"></div>
+						<div class="ni"><span>匿名用户</span><span style="margin-left:400px;">2017-11-3</span></div>
+					</div>
+					<span>不错的好吃呀啊啊啊啊啊啊啊啊啊</span>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/jquery.fly.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/tween.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/pro/js/dc.js"></script>
+	<script>
+//		在按钮添加的click事件里
+
+		function qq(id){
+			$.ajax({
+				type:"POST",
+				url:"{:url('/index/index/getDishById')}",
+				data:{
+					id:id
+				},
+				success:function(data){
+					$("section").empty();
+					var file=data.dish_img.substring(0,8);
+					var img='thumb'+data.dish_img.substring(9,45);
+					$("section").append("<div class='s_top' style='background: url(/uploads/dish/" + file + "/" + img + ");" +
+					" background-size:750px 518px;'><div onclick='cha();' class='cha'><i class='iconfont' style='font-size:60px;" +
+					"color:white'>&#xe639;</i></div></div><div class='s_center'><p style='font-size: 28px;'>" + data.dish_name + "</p>" +
+					"<p>月售" + data.dish_sales + "</p><p class='rj'><span class='price' style='color: red;'>￥" + data.dish_price + "</span>" +
+					"<span onclick='addToCar(" + data.dish_id + ");' class='jr xx'>加入购物车</span></p></div><div class='pingjia'>" +
+					"<div class='pj_t'><span style='margin-left: 15px;'>外卖评价（好评度）95%</span><span style='margin-left: 300px;'>18条评论<i class='iconfont'>&#xe503;</i>" +
+					"</span></div><div class='yonp'><div class='lv'><div class='lvtu'></div><div class='ni'><span>匿名用户</span>" +
+					"<span style='margin-left:400px;'>2017-11-3</span></div></div><span>不错的好吃呀啊啊啊啊啊啊啊啊啊</span></div></div>");
+					$("section").show();
+				}
+			});
+		}
+		function cha(){
+			$("section").hide();
+		}
+		function addToCar(dish_id){
+			if(sessionStorage.getItem("mycars")){
+				mycars=sessionStorage.getItem("mycars").split(',');
+				mycars.push(dish_id);
+			}else{
+				mycars=[dish_id];
+				mycars.push();
+			}
+			console.log(mycars);
+			sessionStorage.setItem("mycars",mycars);
+			alert("加入成功");
+		}
+
+			$(".adds").click(function(){
+				var t=$(this).parent().find('input[class*=txt]');
+				var dish_id=$(this).attr('data-id');
+				t.val(parseInt(t.val())+1);
+
+				if(sessionStorage.getItem("mycars")){
+					mycars=sessionStorage.getItem("mycars").split(',');
+					mycars.push(dish_id);
+				}else{
+					mycars=[dish_id];
+					mycars.push();
+				}
+				sessionStorage.setItem("mycars",mycars);
+
+
+				setTotal();
+			})
+			$(".jian").click(function(){
+				var t=$(this).parent().find('input[class*=txt]');
+				var dish_id=$(this).attr('data-id');
+				t.val(parseInt(t.val())-1);
+				if(parseInt(t.val())<0){
+					t.val(0);
+				}
+
+				if(sessionStorage.getItem("mycars")){
+					var mycars=sessionStorage.getItem("mycars").split(',');
+					if($.inArray(dish_id,mycars)!='-1'){
+						mycars.splice($.inArray(dish_id,mycars),1);
+					}
+				}
+				sessionStorage.setItem("mycars",mycars);
+
+				setTotal();
+			})
+
+		function setTotal(){
+			var s=0;
+			var v=0;
+			var n=0;
+			$('.btndw').each(function(){
+				s+=parseInt($(this).find('input[class*=txt]').val())*parseFloat($(this).siblings().find('span[class*=price]').text());
+			});
+			var nIn=$("li.current a").attr("href");
+			$(nIn+"input[type='text']").each(function(){
+				if($(this).val()!=0){
+					n++;
+				}
+			});
+			$(".txt").each(function(){
+				v+=parseInt($(this).val());
+			});
+			if(n>0){
+				$(".current b").html(n).show();
+			}else{
+				$(".current b").hide();
+			}
+			$(".share").html(v);
+			if(v>0){
+				$(".share").css("display","block")
+				$(".che").css({
+					"background":"url(__PUBLIC__/pro/img/h1.png)",
+					"background-size":"100px 100px"
+				})
+			}else{
+			$(".che").css({
+				"background":"url(__PUBLIC__/pro/img/shoppingcar.png)",
+				"background-size":"100px 100px"
+			})
+				$(".share").css("display","none");
+		}
+			$(".gon").html(s.toFixed(2));
+		}
+		setTotal();
+
+
+
+
+//		img图片的懒加载功能实现
+	var num=document.getElementsByTagName('img').length;
+		var img=document.getElementsByTagName('img');
+		var n=0;
+		lazyload();
+		function lazyload(){
+			var seeHeight=document.documentElement.clientHeight;
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			console.log(foot);
+			for(var i=n;i<num;i++){
+				if(img[i].offsetTop<seeHeight+scrollTop){
+					if(img[i].getAttribute("src")=="http://iph.href.lu/200x200?text=%E5%B7%B2%E6%9C%89%E8%8F%9C%E5%93%81"){
+						img[i].src=img[i].getAttribute("c");
+					}
+					n=i+1;
+				}
+			}
+		}
+		function throttle(fun,delay,time){
+			var timeout,startTime=new Date();
+			return function(){
+				var context=this,
+						args=arguments,
+						curTime=new Date();
+				clearTimeout(timeout);
+				if(curTime-startTime>=time){
+					fun.apply(context,args);
+					startTime=curTime;
+				}else{
+					timeout=setTimeout(function(){
+						fun.apply(context,args);
+					},delay);
+				}
+			};
+		}
+		window.addEventListener('scroll',throttle(lazyload,500,1000));
+	</script>
+</html>

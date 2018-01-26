@@ -1,0 +1,125 @@
+{include file='head' /}
+<div class="content-wrapper">
+  <section class="content-header">
+     
+    </section>
+
+    
+
+    <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> 审核列表
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>登录名</th>
+              <th>真实姓名</th>
+              <th>身份证号</th>
+              <th>邮箱</th>
+              <th>手机号</th>
+              <th>店铺名称</th>
+              <th>店铺地址</th>
+              <th>营业执照编号</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {php}
+              $status = ['0' => '待审核', '1' => '审核成功', '2' => '审核失败'];
+              $color = ['0' => 'orange', '1' => 'green', '2' => 'red'];
+            {/php}
+            {volist name='list' id='v'}
+            <tr>
+              <td>{$v['seller_name']}</td>
+              <td>{$v['seller_true_name']}</td>
+              <td>{$v['seller_id_num']}</td>
+              <td>{$v['seller_email']}</td>
+              <td>{$v['seller_tel']}</td>
+              <td>{$v['seller_shop_name']}</td>
+              <td>{$v['seller_shop_addr']}</td>
+              <td>{$v['seller_business_licence_num']}</td>
+              <td style="color: {$color[$v['seller_status']]}">{$status[$v['seller_status']]}</td>
+              <td>
+                <a href="{:url('/sys/index/details', ['id' => $v['seller_id']])}" class="btn btn-xs btn-primary">详情</a>
+              </td>
+            </tr>
+            {/volist}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <!-- <a href="{:url('/admin/index/downLoad')}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> 下载</a> -->
+         <!--  <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button> -->
+          <div class="pull-right"></div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript">
+  function confirmBack(id) {
+    if(confirm('是否确认已结清(此操作将不可撤销)？')) {
+      $.ajax({
+        url: "{:url('admin/index/confirmBack')}",
+        type: "POST",
+        data: {id:id},
+        success: function(data) {
+          if(data.code == 1) {
+            location.reload();
+          } else {
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+
+  function makeExtend(id) {
+    if(confirm('是否确认展期还款(此操作将不可撤销)？')) {
+      $.ajax({
+        url: "{:url('admin/index/makeExtend')}",
+        type: "POST",
+        data: {id:id},
+        success: function(data) {
+          if(data.code == 1) {
+            location.reload();
+          } else {
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+
+  function overdue(id) {
+    if(confirm('是否确认已逾期(此操作将不可撤销)？')) {
+      $.ajax({
+        url: "{:url('admin/index/overdue')}",
+        type: "POST",
+        data: {id:id},
+        success: function(data) {
+          if(data.code == 1) {
+            location.reload();
+          } else {
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+</script>

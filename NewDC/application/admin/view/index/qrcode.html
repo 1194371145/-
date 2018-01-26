@@ -1,0 +1,108 @@
+ {include file='head' /}
+<!-- <link rel="stylesheet" href="__PUBLIC__plug/jQuery-date20151224/dateSelect.css"> -->
+
+<div class="content-wrapper">
+  <section class="content-header">
+
+  </section>
+
+  <section class="invoice">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+            <i class="fa fa-globe"></i> 二维码生成
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+      	{if condition="isset($data['type_id'])"}
+        <form class="form-horizontal yhqajax" method="post" action="{:url('/admin/type/doAdd', ['id' => $data['type_id']])}">
+        {else /} 
+        <form class="form-horizontal yhqajax" method="post" action="{:url('/admin/type/doAdd')}">
+        {/if}  
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">桌号</label>
+            <div class="col-xs-12 col-sm-3">
+              <input type="text" value="{$data['table_num']|default=''}" name="table_num" class="form-control" id="inputEmail3" placeholder="桌号">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">尺寸</label>
+              <div class="col-xs-12 col-sm-1">
+                <input type="number" name="width" class="form-control" id="inputEmail3" placeholder="宽">
+              </div>
+              <div class="col-xs-12 col-sm-1">
+                <input type="number" name="height" class="form-control" id="inputEmail3" placeholder="高">
+              </div>
+              <span for="inputEmail3" class="col-sm-2 control-label">如不填写,默认200*200</span>
+            </div>
+            
+            <div id="code" class="form-group" style="display: none;">
+              <label for="inputEmail3" class="col-sm-2 control-label">二维码</label>
+              <div class="col-xs-12 col-sm-3" id="qrcode">
+                
+              </div>
+              <span for="inputEmail3" class="col-sm-3 control-label">右击图片另存为可保存二维码</span>
+            </div>
+
+           <div class="form-actions">
+              <div class="col-md-offset-3 col-md-9">
+                <button class="btn btn-primary" type="button" onclick="makeCode();">
+                  <i class="fa fa-check bigger-110"></i> 生成二维码
+                </button> 
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript" src="__PUBLIC__/plug/qrcodejs-master/qrcode.js"></script>
+<script type="text/javascript">
+    function makeCode() {
+      
+      $('#qrcode').empty();
+      var url = window.location.host;
+      console.log(url);
+      var ex = /^\d+$/;
+      var table_num = $("input[name='table_num']").val();
+      var height = $("input[name='height']").val();
+      var width = $("input[name='width']").val();
+      if(isNaN(table_num)) {
+        alert("请输入合法的桌号");
+        return false;
+      } 
+      if (!ex.test(table_num)) {
+         alert("请输入合法的桌号");
+         return false;
+      }
+      if(table_num <= 0) {
+        alert("请输入合法的桌号");
+        return false;
+      }
+      $('#code').show();
+      if(!width) {
+        width = 200;
+      }
+      if(!height) {
+        height = 200;
+      }
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width : width,
+        height : height,
+      });
+      if(url == 'www.hcinw.com') {
+        qrcode.makeCode("http://"+url+"/DC/public/index.php?tablenum="+table_num);
+      } else {
+        qrcode.makeCode("http://"+url+"/index.php?tablenum="+table_num+"&&shopid={$Think.session.u_info->seller_id}");
+      }
+      // qrcode.makeCode(table_num);
+    }
+  </script>

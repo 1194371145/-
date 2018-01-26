@@ -1,0 +1,106 @@
+{include file='head' /}
+<div class="content-wrapper">
+  <section class="content-header">
+     
+    </section>
+
+    
+
+    <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> 订单列表
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>订单号</th>
+              <th>订单总价</th>
+              <th>桌号</th>
+              <th>下单时间</th>
+              <th>状态</th>
+              <th>付款状态</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              {php}
+                $status = ['0' => '未开始', 1 => '进行中', 2 => '已完成'];
+                $isPay = ['0' => '未支付', '1' => '已支付'];
+              {/php}
+              {volist name='list' id='v'}
+              <tr>
+                <td>{$v['order_num']}</td>
+                <td>{:getOrderTotalPrice($v['order_num'])}</td>
+                <td>{$v['order_table_num']}</td>
+                <td>{$v['order_add_time']}</td>
+                <td>{$status[$v['order_status']]}</td>
+                <td id="{$v['order_num']}">{$isPay[$v['order_is_pay']]}</td>
+                <td>
+                  <a href="{:url('/admin/order/orderDet', ['order_num' => $v['order_num']])}" class="btn btn-primary btn-xs">查看详情</a>
+                  <button onclick="confirmPay('{$v['order_num']}');" class="btn btn-xs btn-success">确认付款</button>
+                </td>
+              </tr>
+              {/volist}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <!-- <a href="{:url('/admin/index/downLoad')}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> 下载</a> -->
+         <!--  <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button> -->
+          <div class="pull-right"></div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+{include file='foot' /}
+<script type="text/javascript">
+  setInterval(function() {
+      location.reload();
+  },60000);
+  function del(id) {
+    if(confirm('是否确认删除?')) {
+      $.ajax({
+        url:"{:url('/admin/type/dodel')}",
+        type:"POST",
+        data:{id:id},
+        success:function(data){
+          if(data.code==1){
+            $("#"+id).remove();
+          }else{
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+
+  function confirmPay(order_num) {
+    if(confirm('是否确认已经付完款?')) {
+      $.ajax({
+        url:"{:url('/admin/order/confirmPay')}",
+        type:"POST",
+        data:{order_num:order_num},
+        success:function(data){
+          if(data.code==1){
+            $("#"+order_num).html('已支付');
+          }else{
+            alert(data.msg);
+          }
+        }
+      });
+    }
+  }
+</script>

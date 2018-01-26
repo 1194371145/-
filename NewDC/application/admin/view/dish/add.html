@@ -1,0 +1,100 @@
+ {include file='head' /}
+<!-- <link rel="stylesheet" href="__PUBLIC__plug/jQuery-date20151224/dateSelect.css"> -->
+
+<div class="content-wrapper">
+  <section class="content-header">
+
+  </section>
+
+  <section class="invoice">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+            <i class="fa fa-globe"></i> 新增菜品
+            <!-- <small class="pull-right">Date: 2/10/2014</small> -->
+          </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+          {if condition="isset($data)"}
+          <form id="addDish" class="form-horizontal " method="post" action="{:url('/admin/Dish/doEdit', ['id' => $data['dish_id']])}" enctype="multipart/form-data" target="hidden_frame" >
+          {else /}
+          <form id="addDish" class="form-horizontal " method="post" action="{:url('/admin/Dish/doAdd')}" enctype="multipart/form-data" target="hidden_frame" >
+          {/if}
+          
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">菜品图片</label>
+              <div class="col-xs-12 col-sm-3">
+                <input type="file" name="dish_img">
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">分类名称</label>
+            <div class="col-xs-12 col-sm-3">
+              <select class="form-control" name="type_id">
+                <option value="0">请选择系列</option> 
+                {volist name='list' id='v'}
+                  {if condition="isset($data['type_id'])"}
+                    {if condition="$data['type_id'] eq $v['type_id']"}
+                      <option value="{$v['type_id']}" selected="">{$v['type_name']}</option> 
+                    {else /}
+                      <option value="{$v['type_id']}">{$v['type_name']}</option> 
+                    {/if}
+                  {else /}
+                    <option value="{$v['type_id']}">{$v['type_name']}</option> 
+                  {/if}
+                {/volist}    
+              </select>
+            </div>
+          </div>
+
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">菜品名称</label>
+              <div class="col-xs-12 col-sm-3">
+                <input type="text" name="dish_name" value="{$data['dish_name']|default=''}" class="form-control" id="inputEmail3" placeholder="菜品名称" required="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">菜品价格</label>
+              <div class="col-xs-12 col-sm-3">
+                <input type="number" name="dish_price" value="{$data['dish_price']|default=''}" class="form-control" id="inputEmail3" placeholder="菜品价格" required="">
+              </div>
+            </div>
+
+          </form>
+           <div class="form-actions">
+              <div class="col-md-offset-2 col-md-9">
+                <div class="btn btn-primary" type="button" onclick="upload();">
+                  <i class="fa fa-check bigger-110"></i> 保存
+                </div> &nbsp; &nbsp; &nbsp; {if condition="isset($data)"}
+                <button class="btn" type="reset" onclick="history.go(-1);"><i class="fa fa-undo"></i> 返回</buttton>{else /}
+                <button class="btn" type="reset"><i class="fa fa-undo bigger-110"></i> 重置</buttton>{/if}
+              </div>
+            </div>
+          <iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe> 
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    </div>
+<script type="text/javascript">
+  function upload() {
+    // alert(230);
+    $('#addDish').submit();
+    return false;
+  }
+  function callback(msg,success) {
+    if(success) {
+      location="{:url('admin/dish/index')}"
+    } else {
+      alert(msg);
+    }
+  }
+</script>
+{include file='foot' /}
+<!-- <script type="text/javascript" src="__PUBLIC__plug/jQuery-date20151224/dateSelect.js"></script> -->
+

@@ -1,0 +1,3 @@
+账号:admin 123456
+前台:http://www.newdc.com/index.php?tablenum=6&&shopid=1
+后台：http://newdc.com/index.php/admin/login
