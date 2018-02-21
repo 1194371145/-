@@ -1,0 +1,12 @@
+[ 2017-09-18T13:09:44+08:00 ] 127.0.0.1 /app/index.php/Admin/User/edit/id/1
+ERR: 非法操作:edit
+
+[ 2017-09-18T13:13:27+08:00 ] 127.0.0.1 /app/index.php/Admin/User/edit/id/1
+ERR: 非法操作:edit
+
+[ 2017-09-18T13:13:32+08:00 ] 127.0.0.1 /app/index.php/Admin/User/edit/id/1
+ERR: 非法操作:edit
+
+[ 2017-09-18T15:15:22+08:00 ] 127.0.0.1 /app/index.php/Admin/User/edit/id/2
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$id' in 'where clause'
+

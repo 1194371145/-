@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	foreach标签:<br>
+	<foreach name='array' item='for'>
+		{$for}
+	</foreach>
+	<br>
+	二维数组:<br>
+	<volist name='array2' id='vo1'>
+		<volist name='vo1' id='vo'>	
+		{$vo}<br>
+		</volist>
+		<br>
+	</volist>
+	<br>
+	foreach显示案例:<br>
+	<foreach name='array2' item='vs'>
+		{$vs}
+	</foreach>
+</body>
+</html>

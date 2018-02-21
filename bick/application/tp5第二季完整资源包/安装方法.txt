@@ -1,0 +1,10 @@
+1、解压程序后得到bick文件夹，放到www根路径下
+
+2、导入bick.sql数据库文件
+
+3、默认数据库用户名密码是root,如果你的不是，请到配置文件中修改成你自己的
+
+4、首页访问路径  http://127.0.0.1/bick/public/index.php
+
+5、网站开发视频教程：http://www.chuanke.com/s2260700.html
+

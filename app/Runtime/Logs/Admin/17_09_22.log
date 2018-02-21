@@ -1,0 +1,6 @@
+[ 2017-09-22T10:06:00+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/download/id/3
+ERR: 非法操作:download
+
+[ 2017-09-22T10:19:50+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/download/id/3
+ERR: 非法操作:download
+

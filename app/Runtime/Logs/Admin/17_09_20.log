@@ -1,0 +1,69 @@
+[ 2017-09-20T17:14:04+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:05+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:05+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:05+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:14:07+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:07+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:14:07+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:08+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:14:08+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:08+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:14:08+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:09+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:14:09+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 非法操作:showlist
+
+[ 2017-09-20T17:14:09+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 非法操作:add
+
+[ 2017-09-20T17:15:40+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 模板不存在:../app/Admin/View/Doc/showlist.html
+
+[ 2017-09-20T17:15:42+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 模板不存在:../app/Admin/View/Doc/add.html
+
+[ 2017-09-20T17:15:42+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 模板不存在:../app/Admin/View/Doc/add.html
+
+[ 2017-09-20T17:15:43+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 模板不存在:../app/Admin/View/Doc/showlist.html
+
+[ 2017-09-20T17:15:44+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 模板不存在:../app/Admin/View/Doc/add.html
+
+[ 2017-09-20T17:15:44+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 模板不存在:../app/Admin/View/Doc/showlist.html
+
+[ 2017-09-20T17:15:45+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 模板不存在:../app/Admin/View/Doc/add.html
+
+[ 2017-09-20T17:15:47+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/showlist.html
+ERR: 模板不存在:../app/Admin/View/Doc/showlist.html
+
+[ 2017-09-20T17:15:48+08:00 ] 127.0.0.1 /app/index.php/Admin/Doc/add.html
+ERR: 模板不存在:../app/Admin/View/Doc/add.html
+
