@@ -17,17 +17,17 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    
+
 </head>
 <body>
 	<!-- 头部 -->
-	{include file="public/top" /} 
+	{include file="public/top" /}
 	<!-- /头部 -->
-	
+
 	<div class="main-container container-fluid">
 		<div class="page-container">
 			<!-- Page Sidebar -->
-            {include file="public/left" /} 
+            {include file="public/left" /}
             <!-- /Page Sidebar -->
             <!-- Page Content -->
             <div class="page-content">
@@ -44,7 +44,7 @@
 
                 <!-- Page Body -->
                 <div class="page-body">
-                    
+
 <button type="button" tooltip="添加栏目" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('add')}'"> <i class="fa fa-plus"></i> Add
 </button>
 <div class="row">
@@ -84,9 +84,10 @@
                                             <a href="{:url('edit',array('id'=>$art['id']))}" class="btn btn-primary btn-sm shiny">
                                                 <i class="fa fa-edit"></i> 编辑
                                             </a>
-                                            <a href="#" onClick="warning('确实要删除吗', '{:url('del',array('id'=>$art['id']))}')" class="btn btn-danger btn-sm shiny">
+																						<button onclick="del({$art['id']});" class="btn btn-xs btn-danger">删除</button>
+                                            <!-- <a href="#" onClick="warning('确实要删除吗', '{:url('del',array('id'=>$art['id']))}')" class="btn btn-danger btn-sm shiny">
                                                 <i class="fa fa-trash-o"></i> 删除
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                     {/volist}
@@ -108,16 +109,33 @@
                 <!-- /Page Body -->
             </div>
             <!-- /Page Content -->
-		</div>	
+		</div>
 	</div>
-
+	<script type="text/javascript">
+	  function del(id) {
+	    if(confirm('是否确认删除?')) {
+	      $.ajax({
+	        url:"{:url('/admin/article/del')}",
+	        type:"POST",
+	        data:{id:id},
+	        success:function(data){
+	          if(data.code==1){
+	            $("#"+id).remove();
+	          }else{
+	            alert(data.msg);
+	          }
+	        }
+	      });
+	    }
+	  }
+	</script>
 	    <!--Basic Scripts-->
     <script src="__ADMIN__/style/jquery_002.js"></script>
     <script src="__ADMIN__/style/bootstrap.js"></script>
     <script src="__ADMIN__/style/jquery.js"></script>
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
-    
+
 
 
 </body></html>
