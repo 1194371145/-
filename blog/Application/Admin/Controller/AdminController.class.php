@@ -20,7 +20,7 @@ $this->assign('page',$show);// 赋值分页输出
         if(IS_POST){ 
             $date['username']=I('username');
             $date['password']=md5(I('password'));
-            
+            //$data['username']=$admin->username//这个意思是
             if($admin->create($date)){
                 if($admin->add()){
             $this->success('添加管理员成功',U('lst'));
