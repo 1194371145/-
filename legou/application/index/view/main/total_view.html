@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public/header" /}
+
+<body>
+
+    {include file="public/top" /}
+  
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            {include file="public/left_menus" /}
+            
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="col-xs-6 col-sm-3">
+                    总注册人数：{$show_data.all_reg_num} <br>
+                    当前在线人数：{$show_data.now_online} <br>
+                    房卡消耗总数：{$show_data.today_diamond} <br>
+                    房卡销售总数：{$show_data.all_diamond} <br>
+                    本日房卡消耗总数：{$show_data.all_sell_dimond} <br>
+                </div>
+                
+                <form id="selector" method="get" action="total_view.html">
+                    <div class="col-xs-6 colsm-3 placeholder">
+                        <div class="input-daterange input-group" id="datepicker">
+                            <span class="input-group-addon">创建起始：</span>
+                            <input type="text" class="input-sm form-control" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="date_begin" value="{$Think.get.date_begin}">
+                            <span class="input-group-addon">创建结束：</span>
+                            <input type="text" class="input-sm form-control" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="date_end" value="{$Think.get.date_end}">
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <div clss="col-xs-6 colsm-3 placeholder">
+                    <button type="submit" class="btn btn-default" aria-label="Left Align" id="commit" >
+                        查询
+                    </button>
+                </div>  -->
+
+                <div clss="col-xs-6 colsm-3 placeholder">
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="daochu" >
+                        导出
+                    </button>
+                </div> 
+
+                <div id="container" style="width: 95%; height: 100%"></div>
+
+            </div>
+            <!-- endif form -->
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript==================================================- ->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- {include file="public/public_js" /} -->
+
+
+
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="/public/static/js/bootstrap.min.js"></script>
+<script src="/public/static/js/moment.js"></script>
+<script src="/public/static/js/bootstrap-datepicker.min.js"></script>
+<script src="/public/static/js/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="/public/static/js/bootstrap-submenu.min.js"></script>
+<script src="/public/static/js/jquery.qrcode.min.js"></script>
+<script src="__PUBLIC__/js/highcharts.js"></script>
+<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+    <script>
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                defaultSeriesType: 'spline'
+            },
+                
+            title: {
+                text: '在线人数曲线图'
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+                
+            yAxis: {
+                title: {
+                    text: '在线人数'
+                },
+                min: 0,
+                maxPadding: 0.02,
+                minorGridLineWidth: 0, 
+                gridLineWidth: 0,
+                alternateGridColor: null
+            },
+                        
+            tooltip: {
+                formatter: function() {
+                    return '<b>在线人数</b><br/>'+ this.series.name + Highcharts.dateFormat(' %H:%M:%S', this.x) +', '+ this.y +' 人';
+                }
+            },
+
+            plotOptions: {
+                spline: {
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 2
+                        }
+                    },
+            
+                    marker: {
+                        enabled: false,
+                        fillColor: '#00FFFF',
+                        lineColor: '#00FFFF',
+                        states: {
+                            hover: {
+                                enabled: true,
+                                symbol: 'diamond',
+                                radius: 5,
+                                lineWidth: 1
+                            }
+                        }   
+                    },
+
+                    pointInterval: 30, // one hour
+                    //pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
+                }
+            },
+
+            series: [
+                {
+                    name: '选择时段内',
+                    data: [{$today_data}]
+                }
+            ],
+
+            navigation: {
+                menuItemStyle: {
+                    fontSize: '10px'
+                }
+            }
+        });
+    });    
+
+
+
+
+    	// $('#commit').click(function(){
+     //        $('#selector').submit();
+     //    })
+
+        $('#daochu').click(function(){
+
+            $('#selector').submit();
+            // var uid = $('#uid').val();
+            // var handler = $('#handler').val();
+            // var content = $('#content').val();
+            // var date_begin = $('#date_begin').val();
+            // var date_end = $('#date_end').val();
+            // var url = '/admin_action_log_down_excel?uid='+uid+'&date_begin='+date_begin+'&date_end='+date_end;
+            // window.location.href = url; 
+        })
+	</script>
+</body>
+</html>
